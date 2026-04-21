@@ -33,15 +33,6 @@ Build the extension first:
 cd piguild && npm install && npm run build
 ```
 
-## Docker
+## Example
 
-Copy or use the example files at the repo root:
-
-- `Dockerfile.example` — builds piguild from the current checkout and installs `pi` globally.
-- `compose.example.yaml` — sample service, volumes, and `PIGUILD_CONFIG`.
-
-```bash
-docker compose -f compose.example.yaml up --build
-```
-
-See the comments at the top of each file for host directory layout (`config/`, `workspace/`, `pi-config/`).
+See [Piri](https://github.com/aboros/piri) for an example of how to run a piguild based bot with docker. 
