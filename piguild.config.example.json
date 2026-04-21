@@ -1,0 +1,39 @@
+{
+  "discordToken": "ENV:PIGUILD_DISCORD_TOKEN",
+  "allowedGuildIds": ["1032197338313269298"],
+  "guildWorkspaces": {
+    "1032197338313269298": "/workspace"
+  },
+  "defaultWorkspace": "/workspace",
+  "perChannelWorkspaces": "off",
+  "perChannelWorkspaceBase": "~/.piguild/channels",
+  "allowDm": true,
+  "statePath": "/app/config/piguild.state.json",
+
+  "trigger": {
+    "mention": true,
+    "allowedChannelIds": ["123456789", "987654321"]
+  },
+
+  "access": {
+    "ownerUserId": "827504403443089418",
+    "allowedRoleNames": ["piguild"],
+    "allowedUserIds": [],
+    "blockedPathPatterns": [".env", ".env.*", "*.pem", "*.key"]
+  },
+
+  "registerCommands": true,
+
+  "renderer": "default",
+  "rendererOptions": {
+    "showModel": true,
+    "showContext": true,
+    "showThinking": false,
+    "compactTools": false
+  },
+
+  "personaFile": "./persona.md",
+  "systemPromptAppend": "",
+  "thinkingLevel": "off",
+  "toolMode": "coding"
+}

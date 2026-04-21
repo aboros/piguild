@@ -1,0 +1,39 @@
+{
+  "name": "piguild",
+  "version": "1.0.0",
+  "description": "Discord-native pi extension: guild workspaces, mention routing, pluggable renderers",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "piguild.config.example.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "pi-package",
+    "pi",
+    "discord"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@mariozechner/pi-coding-agent": "0.64.0",
+    "@sinclair/typebox": "^0.34.0",
+    "discord.js": "^14.16.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@venthezone/picord": "0.2.3",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": ">=0.64.0"
+  }
+}
