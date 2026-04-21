@@ -35,4 +35,13 @@ cd piguild && npm install && npm run build
 
 ## Docker
 
-See the repository `Dockerfile` and `compose.yaml` for a container that builds piguild and runs pi with this extension.
+Copy or use the example files at the repo root:
+
+- `Dockerfile.example` — builds piguild from the current checkout and installs `pi` globally.
+- `compose.example.yaml` — sample service, volumes, and `PIGUILD_CONFIG`.
+
+```bash
+docker compose -f compose.example.yaml up --build
+```
+
+See the comments at the top of each file for host directory layout (`config/`, `workspace/`, `pi-config/`).
