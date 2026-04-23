@@ -12,7 +12,7 @@ import {
 import { threadConversationKey, dmConversationKey } from "../conversation-keys.js";
 import { buildWorkspaceKey } from "../workspace.js";
 import { createLiveRendererForConfig, type ChannelArg } from "../renderer/factory.js";
-import type { DiscordFetchContext } from "../vendor/discord-fetch-context.js";
+import type { DiscordFetchContext } from "../core/discord-fetch-context.js";
 
 export interface CommandHandlerDeps {
   config: PiguildRuntimeConfig;

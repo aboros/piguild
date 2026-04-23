@@ -20,23 +20,23 @@ import {
   AccessApprovalManager,
   type AccessRequest,
   type ApprovalDecisionMode,
-} from "./vendor/access-approval.js";
+} from "./core/access-approval.js";
 import {
   createDiscordExtensionBindings,
   notifyExtensionBindingFailure,
-} from "./vendor/extension-bindings.js";
-import type { PiLiveUpdate } from "./vendor/live-discord-renderer.js";
-import { sumUsageAfterUserMessageAtIndex } from "./vendor/turn-token-usage.js";
+} from "./core/extension-bindings.js";
+import type { PiLiveUpdate } from "./core/live-discord-renderer.js";
+import { sumUsageAfterUserMessageAtIndex } from "./core/turn-token-usage.js";
 import { filterOutPiguildExtensions, getPiguildPackageRoot } from "./pi-resource-loader.js";
 import { PiguildStateRegistry } from "./state-registry.js";
-import { createSafeCustomTools } from "./vendor/safe-tools.js";
+import { createSafeCustomTools } from "./core/safe-tools.js";
 import {
   resolveDiscordFetchContext,
   type DiscordFetchContext,
-} from "./vendor/discord-fetch-context.js";
-import { createDiscordChannelHistoryTool } from "./vendor/discord-history-tool.js";
-import type { AccessContext } from "./vendor/path-policy.js";
-import { WorkspaceGuard } from "./vendor/path-policy.js";
+} from "./core/discord-fetch-context.js";
+import { createDiscordChannelHistoryTool } from "./core/discord-history-tool.js";
+import type { AccessContext } from "./core/path-policy.js";
+import { WorkspaceGuard } from "./core/path-policy.js";
 import type { PiguildRuntimeConfig } from "./config.js";
 import { workspaceRootForKey } from "./workspace.js";
 

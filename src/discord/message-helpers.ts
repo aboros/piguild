@@ -1,5 +1,5 @@
 import type { ChatInputCommandInteraction, Message } from "discord.js";
-import { toDiscordChunks } from "../vendor/conversation.js";
+import { toDiscordChunks } from "../core/conversation.js";
 
 export function buildPromptFromMessage(message: Message, promptText: string): string {
   const attachments = [...message.attachments.values()]

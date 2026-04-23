@@ -1,9 +1,9 @@
-import type { LiveDiscordRunRenderer } from "./vendor/live-discord-renderer.js";
-import type { PiLiveUpdate } from "./vendor/live-discord-renderer.js";
+import type { LiveDiscordRunRenderer } from "./core/live-discord-renderer.js";
+import type { PiLiveUpdate } from "./core/live-discord-renderer.js";
 import type { PiguildRuntimeConfig } from "./config.js";
 import { PiguildSessionPool } from "./session-pool.js";
-import type { AccessRequest, ApprovalDecisionMode } from "./vendor/access-approval.js";
-import type { DiscordFetchContext } from "./vendor/discord-fetch-context.js";
+import type { AccessRequest, ApprovalDecisionMode } from "./core/access-approval.js";
+import type { DiscordFetchContext } from "./core/discord-fetch-context.js";
 
 export interface RegisteredLiveRenderer {
   renderer: LiveDiscordRunRenderer;

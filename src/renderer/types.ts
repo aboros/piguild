@@ -1,4 +1,4 @@
-import type { PiLiveUpdate } from "../vendor/live-discord-renderer.js";
+import type { PiLiveUpdate } from "../core/live-discord-renderer.js";
 
 /** Timeline/metadata surface for custom renderers (phase 2+). */
 export interface PiguildRendererHooks {

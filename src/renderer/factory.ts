@@ -1,4 +1,4 @@
-import { LiveDiscordRunRenderer, createChannelLiveMessageTarget } from "../vendor/live-discord-renderer.js";
+import { LiveDiscordRunRenderer, createChannelLiveMessageTarget } from "../core/live-discord-renderer.js";
 import type { PiguildRuntimeConfig } from "../config.js";
 
 export type ChannelArg = Parameters<typeof createChannelLiveMessageTarget>[0];

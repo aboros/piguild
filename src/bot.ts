@@ -6,7 +6,7 @@ import { PiguildRuntimeAdapter } from "./runtime-adapter.js";
 import { buildPiguildCommands } from "./commands/registry.js";
 import { handleChatInputCommand } from "./commands/handlers.js";
 import { createLiveRendererFromDiscordChannel } from "./renderer/factory.js";
-import { stripBotMention } from "./vendor/conversation.js";
+import { stripBotMention } from "./core/conversation.js";
 import { buildPromptFromMessage, replyToMessage } from "./discord/message-helpers.js";
 import { truncateErrorMessage } from "./discord/errors.js";
 import { handleAccessButtonInteraction, isAccessRequestButton } from "./discord/access-button-handler.js";
@@ -60,7 +60,7 @@ export async function startPiguildBot(options: {
   const notifyLiveUpdate = async (
     conversationKey: string,
     runId: number | undefined,
-    update: import("./vendor/live-discord-renderer.js").PiLiveUpdate,
+    update: import("./core/live-discord-renderer.js").PiLiveUpdate,
   ): Promise<void> => {
     await ctx.adapter?.notifyConversation(conversationKey, runId, update);
   };

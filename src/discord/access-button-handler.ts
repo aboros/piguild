@@ -10,7 +10,7 @@ export function isAccessRequestButton(customId: string): boolean {
 
 /**
  * Handles Allow once / Always allow / Deny for outside-workspace permission embeds
- * (custom IDs from {@link ../vendor/live-discord-renderer.js}).
+ * (custom IDs from {@link ../core/live-discord-renderer.js}).
  */
 export async function handleAccessButtonInteraction(
   interaction: ButtonInteraction,
