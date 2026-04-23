@@ -53,16 +53,30 @@ export type PiguildRuntimeConfig = PiguildConfig & {
   personaContent?: string;
 };
 
-function resolveEnvToken(raw: string): string {
-  const match = /^ENV:(.+)$/.exec(raw.trim());
-  if (!match) {
-    return raw;
+function resolveEnvTokens(value: unknown): unknown {
+  if (typeof value === "string") {
+    const match = /^ENV:(.+)$/.exec(value.trim());
+    if (!match) {
+      return value;
+    }
+    const name = match[1]!;
+    const resolved = process.env[name];
+    if (!resolved) {
+      throw new Error(`Environment variable ${name} is not set.`);
+    }
+    return resolved;
   }
-  const v = process.env[match[1]!];
-  if (!v) {
-    throw new Error(`Environment variable ${match[1]} is not set (discord token).`);
+  if (Array.isArray(value)) {
+    return value.map((item) => resolveEnvTokens(item));
   }
-  return v;
+  if (value !== null && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [key, entry] of Object.entries(value)) {
+      out[key] = resolveEnvTokens(entry);
+    }
+    return out;
+  }
+  return value;
 }
 
 export function loadPiguildConfig(cwd: string): PiguildRuntimeConfig {
@@ -75,17 +89,14 @@ export function loadPiguildConfig(cwd: string): PiguildRuntimeConfig {
   }
 
   const parsed = JSON.parse(fs.readFileSync(configPath, "utf8")) as unknown;
-  const base = piguildConfigSchema.parse(parsed);
-  const withToken: PiguildConfig = {
-    ...base,
-    discordToken: resolveEnvToken(base.discordToken),
-  };
+  const resolved = resolveEnvTokens(parsed);
+  const base = piguildConfigSchema.parse(resolved);
 
   const configDir = path.dirname(configPath);
-  const personaContent = readPersonaOptional(withToken.personaFile, configDir);
+  const personaContent = readPersonaOptional(base.personaFile, configDir);
 
   return {
-    ...withToken,
+    ...base,
     configPath,
     personaContent,
   };
