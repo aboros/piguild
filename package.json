@@ -1,7 +1,7 @@
 {
   "name": "piguild",
   "version": "1.0.0",
-  "description": "Discord-native pi extension: guild workspaces, mention routing, pluggable renderers",
+  "description": "Discord bot runtime that embeds pi-coding-agent as a library",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
