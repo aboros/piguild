@@ -1,6 +1,6 @@
 # piguild
 
-Discord-native [pi](https://github.com/mariozechner/pi) extension: **guild = workspace**, mention-based triggers in allowlisted channels, thread sessions, pluggable renderers.
+Discord bot runtime powered by [pi-coding-agent](https://github.com/mariozechner/pi). Each guild maps to a workspace with optional per-channel workspaces; the agent responds to mentions in allowlisted channels, keeps conversations in threads, and exposes a rich tool/reasoning UI.
 
 ## Requirements
 
