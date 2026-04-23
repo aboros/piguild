@@ -259,6 +259,39 @@ export class WorkspaceGuard {
   }
 
   private async authorizeCommand(command: string, context: AccessContext): Promise<void> {
+    if (/\$HOME\b|\$\{HOME\}|\$PWD\b|\$\{PWD\}/.test(command)) {
+      await this.approvals.request({
+        conversationKey: context.conversationKey,
+        workspaceKey: context.workspaceKey,
+        fingerprint: "bash:env:home-or-pwd",
+        summary:
+          "AI wants to run a bash command referencing $HOME or $PWD (may resolve outside the workspace).",
+      });
+    }
+
+    if (command.includes("$(") || command.includes("`")) {
+      await this.approvals.request({
+        conversationKey: context.conversationKey,
+        workspaceKey: context.workspaceKey,
+        fingerprint: "bash:command-substitution",
+        summary:
+          "AI wants to run a bash command containing command substitution ($(...) or backticks), which may access paths outside the workspace.",
+      });
+    }
+
+    const quotedTilde =
+      /"[^"]*~\//.test(command) ||
+      /'[^']*~\//.test(command);
+    if (quotedTilde) {
+      await this.approvals.request({
+        conversationKey: context.conversationKey,
+        workspaceKey: context.workspaceKey,
+        fingerprint: "bash:quoted-tilde",
+        summary:
+          'AI wants to run a bash command with tilde paths inside quotes (e.g. "~/..."), which static analysis cannot expand safely.',
+      });
+    }
+
     const tokens = command.match(/(~\/[^\s'"`]+|\/[^\s'"`]+|\.\.\/[^\s'"`]+|\.\/[^\s'"`]+|\.env(?:\.[^\s'"`]+)?)/g) ?? [];
 
     for (const token of tokens) {
