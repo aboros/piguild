@@ -772,11 +772,8 @@ export class PiguildSessionPool {
         ? [createDiscordChannelHistoryTool(this.discordClient, resolvedDiscord)]
         : [];
 
-    const tools = [
-      createReadTool(workspaceState.cwd, {
-        operations: await workspaceState.guard.createReadOperations(accessContext),
-      }),
-      ...(this.config.toolMode === "coding"
+    const codingTools =
+      this.config.toolMode === "coding"
         ? [
             createBashTool(workspaceState.cwd, {
               operations: await workspaceState.guard.createBashOperations(accessContext),
@@ -788,7 +785,13 @@ export class PiguildSessionPool {
               operations: await workspaceState.guard.createWriteOperations(accessContext),
             }),
           ]
-        : []),
+        : [];
+
+    const tools = [
+      createReadTool(workspaceState.cwd, {
+        operations: await workspaceState.guard.createReadOperations(accessContext),
+      }),
+      ...codingTools,
     ];
 
     const scopedModels = this.listModels(options.workspaceKey).map((modelSummary) => ({
